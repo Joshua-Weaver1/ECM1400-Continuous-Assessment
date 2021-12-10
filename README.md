@@ -64,5 +64,7 @@ The tests has been placed in the modules called test_covid_data_handler and test
 
 ## Details
 Author: Joshua Weaver
+
 Link to GitHub Page: https://github.com/Joshua-Weaver1/ECM1400-Continuous-Assessment
+
 Licence: MIT Licence
