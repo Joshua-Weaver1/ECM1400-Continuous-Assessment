@@ -26,9 +26,7 @@ This purpose of this project is to implement a simple personalised covid dashboa
 ## Prerequisites
 This project utilised the Python version 3.10.0.
 
-Python
-
-:   Here is the link to download Python:
+Here is the link to download Python:
 [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
 ---
