@@ -1,5 +1,6 @@
 {
 	"API-Key": "Enter API Key Here",
 	"location": "England",
-	"location_type": "nation"
+	"location_type": "nation",
+	"csv_filename": "nation_2021-10-28.csv"
 }

@@ -1,22 +1,34 @@
 """All the Covid data handling functionality"""
 
 #Import Libraries
+import json
 import csv
 import logging
 from uk_covid19 import Cov19API
 import pandas
 import logging_formatting
 
+#Opening JSON file
+f = open('config.json')
+
+#Returns JSON object as a dictionary
+data_configuration_json = json.load(f)
+
+#Closing file
+f.close()
+
 #Create Logger for this module
 logger = logging.getLogger(__name__)
 
 #Define Global Variables
-csv_filename = "nation_2021-10-28.csv"
+csv_filename = data_configuration_json["csv_filename"]
 
 def parse_csv_data(csv_filename: str) -> list:
-    """Returns a list of strings for the rows in the file""" 
+    """Returns a list of strings for the rows in the file"""
+
     #Logging
     logging.info("The parse_csv_data function has been called")
+
     with open(csv_filename, newline='') as f:
         reader = csv.reader(f)
         covid_csv_data = list(reader)
@@ -26,6 +38,7 @@ def parse_csv_data(csv_filename: str) -> list:
 def process_covid_csv_data(covid_csv_data: list) -> int:
     """Returns three variables; the number of cases in the last 7 days, the current number
 of hospital cases and the cumulative number of deaths"""
+
     #Logging
     logging.info("The process_covid_csv_data function has been called")
 

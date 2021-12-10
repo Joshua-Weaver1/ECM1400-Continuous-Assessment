@@ -2,10 +2,10 @@
 
 #Import Libraries
 import json
-import logging_formatting
-from newsapi import NewsApiClient
 from flask import request
+import logging_formatting
 import logging
+from newsapi import NewsApiClient
 
 #Create Logger for this module
 logger = logging.getLogger(__name__)
@@ -26,7 +26,7 @@ def news_API_request(covid_terms = "Covid COVID-19 coronavirus"):
 
     #Logging
     logging.info("The news_API_request function has been called")
-    
+
     all_articles = newsapi.get_everything(q=covid_terms,
                                           sources='bbc-news,the-verge',
                                           domains='bbc.co.uk,techcrunch.com',
@@ -46,7 +46,7 @@ def delete_news_article(news_articles):
     logging.info("The delete_news_article has been called")
 
     text_field = request.args.get('notif')
-    
+
     for i in range (len(news_articles)):
         if text_field == news_articles[i]['title']:
             del news_articles[i]

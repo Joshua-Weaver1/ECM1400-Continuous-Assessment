@@ -53,12 +53,16 @@ Firstly you must create an account with the News API and create your own key. En
 
 After starting the program, you may access the program by going to the address http://127.0.0.1:5000/index on a browser.
 
+In order to customise the program to display the statistics for your given area, you can access the config file and change the values for the keys "location" and "location_type".
+
 ---
 
 ## Testing
-The tests has been placed in the modules called test_covid_data_handler and test_covid_news_handling. These will automatically be performed when the webpage is refreshed by the client.
+The tests has been placed in the modules called test_covid_data_handler and test_covid_news_handling. These will be called when the webpage is refreshed by the client.
 
 ---
 
 ## Details
 Author: Joshua Weaver
+Link to GitHub Page: https://github.com/Joshua-Weaver1/ECM1400-Continuous-Assessment
+Licence: MIT Licence

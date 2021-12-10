@@ -1,8 +1,8 @@
-"""This module is responsible for the user interface and the renning of the program"""
+"""This module is responsible for the user interface and the running of the program"""
 
 #Import Libraries
-import sched
 import json
+import logging
 from flask import Flask
 from flask import render_template
 import logging_formatting
@@ -10,8 +10,8 @@ import test_covid_news_handling as tcnh
 import covid_data_handler as cdh
 import covid_news_handling as cnh
 import test_covid_data_handler as tcdh
-import logging
 
+#Initalise app
 app = Flask(__name__)
 
 #Create Logger for this module
@@ -26,6 +26,7 @@ data_configuration_json = json.load(j)
 #Closing file
 j.close()
 
+#Define Global Variables
 news = cnh.news_API_request(covid_terms = "Covid COVID-19 coronavirus")
 covid_data_exeter = cdh.covid_API_request()
 covid_data_england = cdh.covid_API_request(location = data_configuration_json["location"],
@@ -38,7 +39,8 @@ def redirect():
     #Logging
     logging.info("The redirect function has been called")
 
-    return rd(url_for('button_responses'))
+    string = "Please enter the url http://127.0.0.1:5000/index to access the dashboard."
+    return string
 
 @app.route('/index')
 def run_application():
@@ -57,20 +59,22 @@ def run_application():
 
     news_articles = news['articles']
     cnh.delete_news_article(news_articles)
+
     return render_template('index.html',
                            title = 'Coronavirus Daily Update',
                            image = 'coronavirus1.jpg',
                            news_articles = news['articles'],
                            location = covid_data_exeter['data'][0]['areaName'],
-                           local_7day_infections = 
+                           local_7day_infections =
                            covid_data_exeter['data'][0]['newCasesByPublishDateRollingSum'],
-                           nation_location = 
+                           nation_location =
                            covid_data_england['data'][0]['areaName'],
-                           national_7day_infections = 
+                           national_7day_infections =
                            covid_data_england['data'][0]['newCasesByPublishDateRollingSum'],
-                           hospital_cases = 
+                           hospital_cases =
                            "Hospital Cases: " + str(covid_data_england['data'][0]['hospitalCases']),
-                           deaths_total = "Total Deaths: " + str(covid_data_england['data'][0]['cumDeaths28DaysByPublishDate']))
+                           deaths_total =
+                           "Total Deaths: " + str(covid_data_england['data'][0]['cumDeaths28DaysByPublishDate']))
 
 if __name__ == '__main__':
     app.run()
